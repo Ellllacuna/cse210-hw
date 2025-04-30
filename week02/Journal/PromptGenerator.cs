@@ -7,7 +7,11 @@ using System.Collections.Generic;
         {
             "What was the best part of your day?",
             "Did you see any cool dogs?",
-            "Did you acheive any goals today?"
+            "Did you acheive any goals today?",
+            "What are you grateful for today?",
+            "If you had all the money in the world, what would you do?",
+            "Are you proud of what you've accomplished today?",
+            "What is the current problem you are facing?"
         };
 
         public Random _random = new Random();

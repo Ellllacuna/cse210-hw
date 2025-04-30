@@ -11,7 +11,7 @@ class Program
         {
             Console.WriteLine(" ");
             Console.WriteLine("Please select one of the following choices:");
-            Console.WriteLine("1. Write\n2. Display\n3. Load\n4. Save\n5. Quit");
+            Console.WriteLine("1. Write\n2. Display\n3. Load\n4. Save\n5. Quit\n6. Search");
             Console.Write("What would you like to do? ");
             userInput = int.Parse(Console.ReadLine());
             
@@ -25,6 +25,14 @@ class Program
                 Console.Write(">");
                 string entryText = Console.ReadLine();
 
+                //extra 
+                Console.Write("What is your mood today? ");
+                string moodInput = Console.ReadLine();
+
+                Console.Write("Where are you: ");
+                string location = Console.ReadLine();
+                //end extra
+
                 DateTime theCurrentTime = DateTime.Now;
                 string dateText = theCurrentTime.ToShortDateString();
 
@@ -32,6 +40,10 @@ class Program
                 entry._date = dateText;
                 entry._promptText = prompt;
                 entry._entryText = entryText;
+                //extra
+                entry._mood = moodInput;
+                entry._location = location;
+                //end extra
 
                 newEntry.AddEntry(entry);
             } else if (userInput == 2)
@@ -49,6 +61,12 @@ class Program
                 string fileName = Console.ReadLine();
 
                 newEntry.SaveToFile(fileName);
+            } else if (userInput == 6)
+            {
+                Console.Write("Enter a mood, location, or keyword to search: ");
+                string search = Console.ReadLine();
+
+                newEntry.Searching(search);
             }
         } while (userInput != 5);
     }

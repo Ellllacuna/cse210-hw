@@ -46,10 +46,39 @@ using System.IO;
                 entry._date = parts[0];
                 entry._promptText = parts[1];
                 entry._entryText = parts[2];
+                //extra
+                entry._mood = parts[3];
+                entry._location = parts[4];
+                //end extra
 
                 _entries.Add(entry);   
             }
 
             Console.WriteLine($"Journal loaded from {fileName}");
+        }
+
+        public void Searching(string keyword)
+        {
+            bool found = false;
+            Console.WriteLine("\nresults:");
+
+            foreach (Entry entry in _entries)
+            {
+                if ((entry._mood != null && entry._mood.ToLower().Contains(keyword.ToLower())) ||
+                (entry._location != null && entry._location.ToLower().Contains(keyword.ToLower())) ||
+                (entry._entryText!= null && entry._entryText.ToLower().Contains(keyword.ToLower())))
+                {
+                    Console.WriteLine();
+                    entry.Display();
+                    found = true;
+                }
+
+            }
+
+            if (!found)
+            {
+                Console.WriteLine("No entries match that keyword.");
+            }
+
         }
     }
