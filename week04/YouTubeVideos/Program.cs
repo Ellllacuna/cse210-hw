@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.Design;
 using System.Data.Common;
 
 class Program
@@ -7,54 +8,24 @@ class Program
     {
         List<Video> videos = new List<Video>();
 
-        bool Quit = false;
-        bool Done = false;
-        //enter first video
-        do
-        {
-            Console.WriteLine("Enter the video information.");
-            Console.Write("Title: ");
-            string title = Console.ReadLine();
+        Video video1 = new Video("Candle Making for Idiots", "Idiot", 400);
+        video1.AddComment(new Comment("Dad", "Get a real job"));
+        video1.AddComment(new Comment("Brain man", "Yummu Yummy candles"));
+        video1.AddComment(new Comment("Elizabth", "I made a candle once and this guy came up and ate it"));
+        videos.Add(video1);
 
-            Console.Write("Author: ");
-            string author = Console.ReadLine();
+        Video video2 = new Video("I found dirt in my bathroom", "megatron", 1600000072);
+        video2.AddComment(new Comment("transformer", "pack it up pack it in let us begin"));
+        video2.AddComment(new Comment("Brain man", "Yummu Yummy dirt in the bathroom"));
+        video2.AddComment(new Comment("Todd", "I love shovels"));
+        videos.Add(video2);
 
-            Console.Write("Length (in seconds): ");
-            string lengthInput = Console.ReadLine();
-            int length = int.Parse(lengthInput);
-
-            Video video1 = new Video(title, author, length);
-
-            Console.WriteLine("\nComment Section. Please enter the comment information.");
-            Done = false;
-            do
-            {
-                Console.Write("Comment Author: ");
-                string commentAuthor = Console.ReadLine();
-
-                Console.Write("Comment Text: ");
-                string commentText = Console.ReadLine();
-
-                video1.AddComment(new Comment(commentAuthor, commentText));
-
-                Console.Write("\nAdd another comment? (Y/N) ");
-                string doneinput = Console.ReadLine();
-                if (doneinput.ToLower() == "n" || doneinput == "no")
-                {
-                    Done = true;
-                }
-            } while (!Done);
-
-            videos.Add(video1);
-
-            Console.Write("\nAdd another video? (Y/N) ");
-            string quitInput = Console.ReadLine();
-            if (quitInput == "n" || quitInput == "no")
-            {
-                Quit = true;
-            }
-            Console.WriteLine();
-        } while (Quit == false);
+        Video video3 = new Video("CORNEA EXPLOSION", "eye doctor", 20);
+        video3.AddComment(new Comment("Norm", "Love this guy's work. Been following him for years"));
+        video3.AddComment(new Comment("Brain man", "Yummu Yummy eye ball juice"));
+        video3.AddComment(new Comment("Elizabth", "This guy scares me"));
+        video3.AddComment(new Comment("Robert", "Ditto"));
+        videos.Add(video3);
 
         foreach (Video video in videos)
         {
