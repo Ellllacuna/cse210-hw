@@ -16,12 +16,31 @@ class Program
             {
                 BreathingActivity activity1 = new BreathingActivity();
                 activity1.Run();
+
+                Console.Clear();
             }
             else if (userInput == "2")
             {
                 ReflectingActivity activity2 = new ReflectingActivity();
                 activity2.Run();
+
+                Console.Clear();
             }
-        } while (Quit);
+            else if (userInput == "3")
+            {
+                ListingActivity activity3 = new ListingActivity();
+                activity3.Run();
+
+                Console.Clear();
+            }
+            else if (userInput == "4")
+            {
+                Quit = true;
+            }
+            else
+            {
+                Console.WriteLine("Please Input a Valid Response");
+            }
+        } while (!Quit);
     }
 }

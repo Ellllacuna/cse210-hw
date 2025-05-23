@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Net.Http.Headers;
 
 public class ListingActivity : Activity
@@ -39,6 +40,14 @@ public class ListingActivity : Activity
         Console.WriteLine("\n\nGet ready...");
         listing.ShowSpinner(5);
         Console.WriteLine("\n");
+
+        Console.WriteLine("List as many responses you can to the following prompt:");
+        listing.GetRandomPrompt();
+        Console.Write("You many begin in: ");
+        listing.ShowCountDown(5);
+        Console.WriteLine();
+
+        List<string> userResponses = listing.GetListFromUser();
     }
 
     public void GetRandomPrompt()
@@ -46,11 +55,21 @@ public class ListingActivity : Activity
         Random rand = new Random();
         int i = rand.Next(_prompts.Count);
         string randomPrompt = _prompts[i];
-        Console.WriteLine($"{randomPrompt}");
+        Console.WriteLine($" --- {randomPrompt} ---");
     }
 
     public List<string> GetListFromUser()
     {
-        
+        List<string> responses = new List<string>();
+        DateTime startTime = DateTime.Now;
+        DateTime endTime = startTime.AddSeconds(_duration);
+
+        while (DateTime.Now < endTime)
+        {
+            Console.Write("> ");
+            responses.Add(Console.ReadLine());  
+        }
+
+        return responses;
     }
 }
