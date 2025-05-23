@@ -40,6 +40,7 @@ public class ReflectingActivity : Activity
         Console.Write("How long, in seconds, would you like for your session? ");
         string durationInput = Console.ReadLine();
         int durationReflecting = int.Parse(durationInput);
+        reflecting.SetDuration(durationReflecting);
 
         Console.Clear();
 
@@ -73,17 +74,24 @@ public class ReflectingActivity : Activity
         // extra
 
         List<string> shuffledQuestions = GetShuffledQuestions(_questions);
+
+        int i = 0;
         while (DateTime.Now < endTime)
         {
-            foreach (string question in shuffledQuestions)
+            Console.Write($"> {shuffledQuestions[i]} ");
+            reflecting.ShowSpinner(5);
+            Console.WriteLine();
+
+            i++;
+
+            if (i >= shuffledQuestions.Count)
             {
-                Console.Write($"> {question}");
-                reflecting.ShowSpinner(5);
-                Console.WriteLine();
+                i = 0;
             }
         }
 
-
+        reflecting.DisplayEndingMessage();
+        reflecting.ShowSpinner(5);
     }
 
     public string GetRandomPrompt()
