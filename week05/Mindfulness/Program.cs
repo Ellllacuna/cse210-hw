@@ -40,6 +40,8 @@ class Program
             else
             {
                 Console.WriteLine("Please Input a Valid Response");
+                Thread.Sleep(5000);
+                Console.Clear();
             }
         } while (!Quit);
     }

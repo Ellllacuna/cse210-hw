@@ -48,6 +48,9 @@ public class ListingActivity : Activity
         Console.WriteLine();
 
         List<string> userResponses = listing.GetListFromUser();
+
+        listing.DisplayEndingMessage();
+        listing.ShowSpinner(5);
     }
 
     public void GetRandomPrompt()
