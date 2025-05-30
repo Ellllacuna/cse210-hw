@@ -62,6 +62,17 @@ public class GoalManager
             EternalGoal eternalgoal = new EternalGoal(goalName, descriptionText, pointsText);
             _goals.Add(eternalgoal);
         }
+        else if (goalTypeInput == "3")
+        {
+            Console.Write("How many times foes this goal need to be accomplished for a bonus? ");
+            int target = int.Parse(Console.ReadLine());
+
+            Console.Write("What is the bonus for accomplishing it that many times? ");
+            int bonus = int.Parse(Console.ReadLine());
+
+            ChecklistGoal checklist = new ChecklistGoal(goalName, descriptionText, pointsText, target, bonus);
+            _goals.Add(checklist);
+        }
 
     }
 }
