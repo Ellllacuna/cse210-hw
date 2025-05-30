@@ -12,6 +12,10 @@ public class GoalManager
 
     public void Start()
     {
-        
+        bool Quit = false;
+        do
+        {
+            
+        }while (!Quit);
     }
 }
