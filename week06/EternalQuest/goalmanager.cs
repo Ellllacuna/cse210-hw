@@ -18,6 +18,15 @@ public class GoalManager
             Console.WriteLine("Menu Options:\n    1. Create New Goal\n    2. List Goals\n    3. Save Goals\n    4. Load Goals\n    5. Record Event\n    6. Quit");
             Console.Write("Select a choice from the menu: ");
             string userInput = Console.ReadLine();
+
+            if (userInput == "1")
+            {
+                CreateGoal();
+            }
+            else if (userInput == "2")
+            {
+                ListGoalDetails();
+            }
         } while (!Quit);
     }
 
@@ -26,13 +35,22 @@ public class GoalManager
         Console.WriteLine($"\nYou have {_score} points\n");
     }
 
+    public void ListGoalNames()
+    {
+        foreach (Goal goal in _goals)
+        {
+            int nameListNumber = _goals.IndexOf(goal);
+            Console.WriteLine($"{nameListNumber}. {goal.GetName()}");
+        }
+    }
+
     public void ListGoalDetails()
     {
         Console.WriteLine("The goals are:");
         foreach (Goal goal in _goals)
         {
             int listNumber = _goals.IndexOf(goal) + 1;
-            Console.WriteLine($"{listNumber}. [ ] {goal.GetDetailString()}");
+            Console.WriteLine($"{listNumber}. {goal.GetDetailString()}");
         }
         Console.WriteLine();
     }
@@ -74,5 +92,18 @@ public class GoalManager
             _goals.Add(checklist);
         }
 
+    }
+
+    public void RecordEvent()
+    {
+        ListGoalNames();
+        Console.Write("Which goal did you accomplish? ");
+        int index = int.Parse(Console.ReadLine()) - 1;
+
+        if (index >= 0 && index < _goals.Count)
+        {
+            _goals[index].RecordEvent();
+            _score += int.Parse(_goals[index].GetPoints());
+        }
     }
 }
