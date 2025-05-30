@@ -14,6 +14,11 @@ public class EternalGoal : Goal
 
     public override bool IsComplete()
     {
-        return IsComplete();   
+        return true;//placeholder  
+    }
+
+    public override string GetStringRepresentation()
+    {
+        return "placeholderstring";
     }
 }

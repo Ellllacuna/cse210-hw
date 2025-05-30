@@ -19,11 +19,13 @@ class Program
 
             if (userInput == "1")
             {
+                //for create new goal
                 Console.Write("The Types of Goals are:\n    1. Simple Goal\n    2. Eternal Goal\n    3. Checklist Goal\nWhich type of Goal would you like to create? ");
                 string goalTypeInput = Console.ReadLine();
 
                 if (goalTypeInput == "1")
                 {
+                    //for simple goal
                     Console.Write("What is the name of your goal? ");
                     string goalName = Console.ReadLine();
 
@@ -37,9 +39,26 @@ class Program
                     SimpleGoal simplegoal = new SimpleGoal(goalName, descriptionText, pointsText);
                     goals.Add(simplegoal);
                 }
+                else if (goalTypeInput == "2")
+                {
+                    //for eternal goal
+                    Console.Write("What is the name of your goal? ");
+                    string goalName = Console.ReadLine();
+
+                    Console.Write("What is a short description of it? ");
+                    string descriptionText = Console.ReadLine();
+
+                    Console.Write("What is the amount of points assiciated with this goal? ");
+                    string pointsText = Console.ReadLine();
+                    Console.WriteLine("");
+
+                    EternalGoal eternalGoal = new EternalGoal(goalName, descriptionText, pointsText);
+                    goals.Add(eternalGoal);
+                }
             }
             else if (userInput == "2")
             {
+                //for list goals
                 Console.WriteLine("The goals are: ");
                 foreach (Goal goal in goals)
                 {
