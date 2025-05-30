@@ -18,7 +18,7 @@ public class GoalManager
         {
             DisplayPlayerInfo();
 
-            Console.WriteLine("Menu Options:\n    1. Create New Goal\n    2. List Goals\n    3. Save Goals\n    4. Load Goals\n    5. Record Event\n    6. Quit");
+            Console.WriteLine("Menu Options:\n    1. Create New Goal\n    2. List Goals\n    3. Save Goals\n    4. Load Goals\n    5. Record Event\n    6. Delete a goal\n    7. Quit");
             Console.Write("Select a choice from the menu: ");
             string userInput = Console.ReadLine();
 
@@ -48,6 +48,23 @@ public class GoalManager
                 Console.WriteLine();
             }
             else if (userInput == "6")
+            {
+                ListGoalNames();
+
+                Console.Write("What goal do you want to delete? ");
+                string deleteInput = Console.ReadLine();
+
+                if (int.TryParse(deleteInput, out int index) && index > 0 && index <= _goals.Count)
+                {
+                    Console.WriteLine($"Goal '{_goals[index - 1].GetName()}' deleted.");
+                    _goals.RemoveAt(index - 1);
+                }
+                else
+                {
+                    Console.WriteLine("Invalid selection");
+                }
+            }
+            else if (userInput == "7")
             {
                 Quit = true;
             }
