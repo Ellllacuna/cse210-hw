@@ -94,8 +94,21 @@ public class GoalManager
         Console.Write("What is a short description of it? ");
         string descriptionText = Console.ReadLine();
 
-        Console.Write("What is the amount of points assiciated with this goal? ");
-        string pointsText = Console.ReadLine();
+        string pointsText;
+        while (true)
+        {
+            Console.Write("What is the amount of points assiciated with this goal? ");
+            pointsText = Console.ReadLine();
+
+            if (int.TryParse(pointsText, out _))
+            {
+                break;
+            }
+            else
+            {
+                Console.WriteLine("That is not a number. Please Try again.");
+            }
+        }
         Console.WriteLine("");
 
         if (goalTypeInput == "1")
@@ -110,21 +123,36 @@ public class GoalManager
         }
         else if (goalTypeInput == "3")
         {
-            Console.Write("How many times does this goal need to be accomplished for a bonus? ");
-            string targetInput = Console.ReadLine();
-            if (int.TryParse(targetInput, out int target))
+            int target;
+            while (true)
             {
-                target = int.Parse(targetInput);
+                Console.Write("How many times does this goal need to be accomplished for a bonus? ");
+                string targetInput = Console.ReadLine();
+                if (int.TryParse(targetInput, out target))
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("That is not a number. Please try again.");
+                }
             }
-            else
-            {
-                Console.WriteLine("That is not a number");
-            }
-            //int target = int.Parse(Console.ReadLine());
 
+            int bonus;
+            while (true)
+            {
                 Console.Write("What is the bonus for accomplishing it that many times? ");
-            int bonus = int.Parse(Console.ReadLine());
+                string bonusInput = Console.ReadLine();
 
+                if (int.TryParse(bonusInput, out bonus))
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("That is not a number. Please Try again.");
+                }
+            }
             ChecklistGoal checklist = new ChecklistGoal(goalName, descriptionText, pointsText, target, bonus);
             _goals.Add(checklist);
         }
