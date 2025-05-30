@@ -16,6 +16,8 @@ public class GoalManager
         bool Quit = false;
         do
         {
+            DisplayPlayerInfo();
+
             Console.WriteLine("Menu Options:\n    1. Create New Goal\n    2. List Goals\n    3. Save Goals\n    4. Load Goals\n    5. Record Event\n    6. Quit");
             Console.Write("Select a choice from the menu: ");
             string userInput = Console.ReadLine();
@@ -44,6 +46,14 @@ public class GoalManager
             {
                 RecordEvent();
                 Console.WriteLine();
+            }
+            else if (userInput == "6")
+            {
+                Quit = true;
+            }
+            else
+            {
+                Console.WriteLine("Please input a valid option");
             }
         } while (!Quit);
     }
@@ -100,10 +110,19 @@ public class GoalManager
         }
         else if (goalTypeInput == "3")
         {
-            Console.Write("How many times foes this goal need to be accomplished for a bonus? ");
-            int target = int.Parse(Console.ReadLine());
+            Console.Write("How many times does this goal need to be accomplished for a bonus? ");
+            string targetInput = Console.ReadLine();
+            if (int.TryParse(targetInput, out int target))
+            {
+                target = int.Parse(targetInput);
+            }
+            else
+            {
+                Console.WriteLine("That is not a number");
+            }
+            //int target = int.Parse(Console.ReadLine());
 
-            Console.Write("What is the bonus for accomplishing it that many times? ");
+                Console.Write("What is the bonus for accomplishing it that many times? ");
             int bonus = int.Parse(Console.ReadLine());
 
             ChecklistGoal checklist = new ChecklistGoal(goalName, descriptionText, pointsText, target, bonus);
@@ -144,33 +163,39 @@ public class GoalManager
     {
         Console.Write("Enter file name: ");
         string file = Console.ReadLine();
-
-        string[] lines = File.ReadAllLines(file);
-        _score = int.Parse(lines[0]);
-
-        foreach (string line in lines.Skip(1))
+        if (File.Exists(file))
         {
-            string[] parts = line.Split(":");
-            string[] values = parts[1].Split("|");
+            string[] lines = File.ReadAllLines(file);
+            _score = int.Parse(lines[0]);
 
-            if (parts[0] == "SimpleGoal")
+            foreach (string line in lines.Skip(1))
             {
-                bool isComplete = bool.Parse(values[3]);
-                SimpleGoal simplegoal = new SimpleGoal(values[0], values[1], values[2]);
-                simplegoal.SetComplete(isComplete);
-                _goals.Add(simplegoal);
+                string[] parts = line.Split(":");
+                string[] values = parts[1].Split("|");
+
+                if (parts[0] == "SimpleGoal")
+                {
+                    bool isComplete = bool.Parse(values[3]);
+                    SimpleGoal simplegoal = new SimpleGoal(values[0], values[1], values[2]);
+                    simplegoal.SetComplete(isComplete);
+                    _goals.Add(simplegoal);
+                }
+                else if (parts[0] == "EternalGoal")
+                {
+                    EternalGoal egoal = new EternalGoal(values[0], values[1], values[2]);
+                    _goals.Add(egoal);
+                }
+                else if (parts[0] == "ChecklistGoal")
+                {
+                    ChecklistGoal cgoal = new ChecklistGoal(values[0], values[1], values[2], int.Parse(values[4]), int.Parse(values[3]));
+                    cgoal.SetAmountCompleted(int.Parse(values[5]));
+                    _goals.Add(cgoal);
+                }
             }
-            else if (parts[0] == "EternalGoal")
-            {
-                EternalGoal egoal = new EternalGoal(values[0], values[1], values[2]);
-                _goals.Add(egoal);
-            }
-            else if (parts[0] == "ChecklistGoal")
-            {
-                ChecklistGoal cgoal = new ChecklistGoal(values[0], values[1], values[2], int.Parse(values[4]), int.Parse(values[3]));
-                cgoal.SetAmountCompleted(int.Parse(values[5]));
-                _goals.Add(cgoal);
-            }
+        }
+        else
+        {
+            Console.WriteLine("File does not exist");
         }
     }
 }
