@@ -1,10 +1,16 @@
 using System;
+using System.Diagnostics.Contracts;
 
 public class ChecklistGoal : Goal
 {
     private int _amountCompleted;
     private int _target;
     private int _bonus;
+
+    public void SetAmountCompleted(int amountCompleted)
+    {
+        _amountCompleted = amountCompleted;
+    }
 
     public ChecklistGoal(string name, string description, string points, int target, int bonus) : base(name, description, points)
     {
@@ -47,6 +53,6 @@ public class ChecklistGoal : Goal
 
     public override string GetStringRepresentation()
     {
-        return $"ChecklistGoal: {_shortName}|{_description}|{_points}|{_bonus}|{_target}{_amountCompleted}";   
+        return $"ChecklistGoal: {_shortName}|{_description}|{_points}|{_bonus}|{_target}|{_amountCompleted}";   
     }
 }

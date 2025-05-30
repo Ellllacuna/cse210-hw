@@ -160,6 +160,17 @@ public class GoalManager
                 simplegoal.SetComplete(isComplete);
                 _goals.Add(simplegoal);
             }
+            else if (parts[0] == "EternalGoal")
+            {
+                EternalGoal egoal = new EternalGoal(values[0], values[1], values[2]);
+                _goals.Add(egoal);
+            }
+            else if (parts[0] == "ChecklistGoal")
+            {
+                ChecklistGoal cgoal = new ChecklistGoal(values[0], values[1], values[2], int.Parse(values[4]), int.Parse(values[3]));
+                cgoal.SetAmountCompleted(int.Parse(values[5]));
+                _goals.Add(cgoal);
+            }
         }
     }
 }
