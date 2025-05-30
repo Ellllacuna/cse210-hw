@@ -30,12 +30,12 @@ public abstract class Goal
 
     public abstract void RecordEvent();
     public abstract bool IsComplete();
-    public virtual string GetDetailsString()
+    public virtual string GetDetailString()
     {
         if (IsComplete())
         {
             return $"[X] {_shortName} ({_description})";
-        } else if (!IsComplete())
+        } else
         {
             return $"[ ] {_shortName} ({_description})";
         }
