@@ -17,6 +17,7 @@ public class GoalManager
         do
         {
             DisplayPlayerInfo();
+            Console.WriteLine($"Your current rank is: {GetRank()}\n");
 
             Console.WriteLine("Menu Options:\n    1. Create New Goal\n    2. List Goals\n    3. Save Goals\n    4. Load Goals\n    5. Record Event\n    6. Delete a goal\n    7. Quit");
             Console.Write("Select a choice from the menu: ");
@@ -77,7 +78,7 @@ public class GoalManager
 
     public void DisplayPlayerInfo()
     {
-        Console.WriteLine($"\nYou have {_score} points\n");
+        Console.WriteLine($"\nYou have {_score} points");
     }
 
     public void ListGoalNames()
@@ -241,6 +242,28 @@ public class GoalManager
         else
         {
             Console.WriteLine("File does not exist");
+        }
+    }
+
+    public string GetRank()
+    {
+        int total = _score;
+
+        if (total < 100)
+        {
+            return "Beginner";
+        }
+        else if (total >= 100 && total < 200)
+        {
+            return "Intermediate";
+        }
+        else if (total >= 200 && total < 300)
+        {
+            return "Master";
+        }
+        else
+        {
+            return "GrandMaster";
         }
     }
 }
