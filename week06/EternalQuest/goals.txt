@@ -1,0 +1,3 @@
+80
+SimpleGoal:asadf|asdfawe|50|False
+SimpleGoal:adfa|fawef|80|True

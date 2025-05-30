@@ -30,6 +30,16 @@ public class GoalManager
                 ListGoalDetails();
                 Console.WriteLine();
             }
+            else if (userInput == "3")
+            {
+                SaveGoals();
+                Console.WriteLine();
+            }
+            else if (userInput == "4")
+            {
+                LoadGoals();
+                Console.WriteLine();
+            }
             else if (userInput == "5")
             {
                 RecordEvent();
@@ -132,6 +142,24 @@ public class GoalManager
 
     public void LoadGoals()
     {
-        
+        Console.Write("Enter file name: ");
+        string file = Console.ReadLine();
+
+        string[] lines = File.ReadAllLines(file);
+        _score = int.Parse(lines[0]);
+
+        foreach (string line in lines.Skip(1))
+        {
+            string[] parts = line.Split(":");
+            string[] values = parts[1].Split("|");
+
+            if (parts[0] == "SimpleGoal")
+            {
+                bool isComplete = bool.Parse(values[3]);
+                SimpleGoal simplegoal = new SimpleGoal(values[0], values[1], values[2]);
+                simplegoal.SetComplete(isComplete);
+                _goals.Add(simplegoal);
+            }
+        }
     }
 }

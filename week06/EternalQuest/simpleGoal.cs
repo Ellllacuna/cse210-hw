@@ -4,6 +4,11 @@ public class SimpleGoal : Goal
 {
     private bool _isComplete;
 
+    public void SetComplete(bool complete)
+    {
+        _isComplete = complete;
+    }
+
     public SimpleGoal(string name, string description, string points) : base(name, description, points)
     {
         _isComplete = false;
