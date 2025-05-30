@@ -1,4 +1,5 @@
 using System;
+using System.IO.Compression;
 
 public class GoalManager
 {
@@ -22,10 +23,17 @@ public class GoalManager
             if (userInput == "1")
             {
                 CreateGoal();
+                Console.WriteLine();
             }
             else if (userInput == "2")
             {
                 ListGoalDetails();
+                Console.WriteLine();
+            }
+            else if (userInput == "5")
+            {
+                RecordEvent();
+                Console.WriteLine();
             }
         } while (!Quit);
     }
@@ -39,7 +47,7 @@ public class GoalManager
     {
         foreach (Goal goal in _goals)
         {
-            int nameListNumber = _goals.IndexOf(goal);
+            int nameListNumber = _goals.IndexOf(goal) + 1;
             Console.WriteLine($"{nameListNumber}. {goal.GetName()}");
         }
     }
@@ -105,5 +113,25 @@ public class GoalManager
             _goals[index].RecordEvent();
             _score += int.Parse(_goals[index].GetPoints());
         }
+    }
+
+    public void SaveGoals()
+    {
+        Console.Write("Enter File name: ");
+        string file = Console.ReadLine();
+
+        using (StreamWriter outputFile = new StreamWriter(file))
+        {
+            outputFile.WriteLine(_score);
+            foreach (Goal goal in _goals)
+            {
+                outputFile.WriteLine(goal.GetStringRepresentation());
+            }
+        }
+    }
+
+    public void LoadGoals()
+    {
+        
     }
 }
