@@ -4,10 +4,17 @@ class Program
 {
     static void Main(string[] args)
     {
+        List<Activity> activities = new List<Activity>();
+
         Bicycles bike = new Bicycles("03 Nov 2022", 3, 30, 6);
-        Console.WriteLine(bike.GetSummary());
+        activities.Add(bike);
 
         Running run = new Running("03 Nov 2022", 4.8, 30, 9.7);
-        Console.WriteLine(run.GetSummary);
+        activities.Add(run);
+
+        foreach (Activity activity in activities)
+        {
+            Console.WriteLine(activity.GetSummary());
+        }
     }
 }
