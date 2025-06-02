@@ -9,10 +9,6 @@ public class Bicycles : Activity
         _speed = speed;
     }
 
-    public override double GetPace()
-    {
-        return base.GetPace();
-    }
     public override string GetSummary()
     {
         return $"{_date} Stationary Bicycles ({_duration} min)- Distance {_distance} miles, Speed {_speed} mph, Pace: {GetPace()} min per mile";
