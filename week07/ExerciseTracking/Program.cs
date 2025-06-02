@@ -9,7 +9,7 @@ class Program
         Bicycles bike = new Bicycles("03 Nov 2022", 3, 30, 6);
         activities.Add(bike);
 
-        Running run = new Running("03 Nov 2022", 4.8, 30, 9.7);
+        Running run = new Running("03 Nov 2022", 4.8, 30);
         activities.Add(run);
 
         foreach (Activity activity in activities)
