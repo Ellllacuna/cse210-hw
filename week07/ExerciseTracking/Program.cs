@@ -17,7 +17,7 @@ class Program
 
         foreach (Activity activity in activities)
         {
-            Console.WriteLine(activity.GetSummary());
+            Console.WriteLine($"-{activity.GetSummary()}\n");
         }
     }
 }
