@@ -4,30 +4,28 @@ using System.Security.Cryptography.X509Certificates;
 
 public abstract class Activity
 {
-    protected int _distance;
+    protected double _distance;
     protected string _date;
-    protected int _speed;
     protected int _duration;
 
-    public Activity(string date, int distance, int speed, int duration)
+    public Activity(string date, double distance,int duration)
     {
         _distance = distance;
         _date = date;
-        _speed = speed;
         _duration = duration;
     }
 
-    public virtual int GetDistance()
+    public virtual double GetDistance()
     {
         return _distance;
     }
 
-    public int GetSpeed()
+    public double GetSpeed()
     {
         return (_distance / _duration) * 60;
     }
 
-    public int GetPace()
+    public virtual double GetPace()
     {
         return _duration / _distance;
     }
