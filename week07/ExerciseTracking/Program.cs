@@ -6,10 +6,10 @@ class Program
     {
         List<Activity> activities = new List<Activity>();
 
-        Bicycles bike = new Bicycles("03 Nov 2022", 3, 30);
+        Bicycles bike = new Bicycles("02 Jun 2025", 3, 75);
         activities.Add(bike);
 
-        Running run = new Running("03 Nov 2022", 4.8, 30);
+        Running run = new Running("09 Apr 2002", 4.8, 30);
         activities.Add(run);
 
         Swimming swim = new Swimming("03 Nov 2022", 30, 50);
