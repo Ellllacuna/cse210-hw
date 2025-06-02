@@ -16,16 +16,16 @@ public class Swimming : Activity
 
     public override double GetSpeed()
     {
-        return (GetDistance() / _duration) * 60;
+        return (GetDistance() / GetDuration()) * 60;
     }
 
     public override double GetPace()
     {
-        return _duration / GetDistance();
+        return GetDuration() / GetDistance();
     }
 
     public override string GetSummary()
     {
-        return $"{_date} Swimming ({_duration} min)- Distance {GetDistance()} miles, Speed {GetSpeed()} mph, Pace: {GetPace()} min per mile";
+        return $"{GetDate()} Swimming ({GetDuration()} min)- Distance {GetDistance()} miles, Speed {GetSpeed()} mph, Pace: {GetPace()} min per mile";
     }
 }

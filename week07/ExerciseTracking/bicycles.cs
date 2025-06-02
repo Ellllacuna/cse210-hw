@@ -9,6 +9,6 @@ public class Bicycles : Activity
 
     public override string GetSummary()
     {
-        return $"{_date} Stationary Bicycles ({_duration} min)- Distance {_distance} miles, Speed {GetSpeed()} mph, Pace: {GetPace()} min per mile";
+        return $"{GetDate()} Stationary Bicycles ({GetDuration()} min)- Distance {GetDistance()} miles, Speed {GetSpeed()} mph, Pace: {GetPace()} min per mile";
     }
 }

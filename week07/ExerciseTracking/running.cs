@@ -10,6 +10,6 @@ public class Running : Activity
 
     public override string GetSummary()
     {
-        return $"{_date} Running ({_duration} min)- Distance {_distance} miles, Speed {GetSpeed()} mph, Pace: {GetPace()} min per mile";
+        return $"{GetDate()} Running ({GetDuration()} min)- Distance {GetDistance()} miles, Speed {GetSpeed()} mph, Pace: {GetPace()} min per mile";
     }
 }
