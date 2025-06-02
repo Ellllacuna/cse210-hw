@@ -14,6 +14,12 @@ public class Swimming : Activity
         return _laps * 50 / 1000;
     }
 
+    public override double GetSpeed()
+    {
+        return (GetDistance() / _duration) * 60;
+    }
+    
+
     public override string GetSummary()
     {
         return $"{_date} Swimming ({_duration} min)- Distance {GetDistance()} miles, Speed {GetSpeed()} mph, Pace {GetPace()} min per mile";

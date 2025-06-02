@@ -20,7 +20,7 @@ public abstract class Activity
         return _distance;
     }
 
-    public double GetSpeed()
+    public virtual double GetSpeed()
     {
         return (_distance / _duration) * 60;
     }
